@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "405025216871",
+    "project_id": "stint-manager-6cc16",
+    "storage_bucket": "stint-manager-6cc16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405025216871:android:7643706c107562a258f7c2",
+        "android_client_info": {
+          "package_name": "com.example.stint_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405025216871-hbghvbk4q7rfdsnsh23nphr4e0up92h6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbFCGV12fNkq2qvQgY_yp7nZnx3Ka27CY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405025216871-hbghvbk4q7rfdsnsh23nphr4e0up92h6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "405025216871-9j21cnud1ulmam6aq1ss6da6bmu1qkj7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stintApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405025216871:android:e2e58eea6062b33c58f7c2",
+        "android_client_info": {
+          "package_name": "com.stint.stint_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "405025216871-hbghvbk4q7rfdsnsh23nphr4e0up92h6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbFCGV12fNkq2qvQgY_yp7nZnx3Ka27CY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405025216871-hbghvbk4q7rfdsnsh23nphr4e0up92h6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "405025216871-9j21cnud1ulmam6aq1ss6da6bmu1qkj7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.stintApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = stint_app
+PRODUCT_NAME = Stint
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.stintApp
+PRODUCT_BUNDLE_IDENTIFIER = com.stint.stintApp
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.

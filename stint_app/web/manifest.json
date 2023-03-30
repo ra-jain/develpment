@@ -1,6 +1,6 @@
 {
-    "name": "stint_app",
-    "short_name": "stint_app",
+    "name": "Stint Manager",
+    "short_name": "stint",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:stint_app/core/constants/color_constants.dart';
 import 'package:stint_app/provider/user_provider.dart';
-import 'package:stint_app/view/welcome_screen/components/login_form.dart';
+import 'package:stint_app/view/login_screen/components/login_form.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,23 +16,22 @@ class WelcomeScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          child: LayoutBuilder(
-            builder: (co, constraints) {
-              if (constraints.maxWidth < 480) {
-                return body(context: co);
-              }
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-                child: Column(children: [
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: LayoutBuilder(
+              builder: (co, constraints) {
+                if (constraints.maxWidth < 480) {
+                  return body(context: co);
+                }
+                return Column(children: [
                   const SizedBox(height: 16),
                   SizedBox(
                     child: body(context: co),
                     width: 400,
                   ),
-                ]),
-              );
-            },
+                ]);
+              },
+            ),
           ),
         ),
       ),
@@ -68,7 +67,7 @@ class WelcomeScreen extends StatelessWidget {
         const SizedBox(height: 12),
         GestureDetector(
           onTap: () {
-            GoRouter.of(context).push('/contact-us');
+            GoRouter.of(context).push('/sign-up');
           },
           child: Text(
             "Sign Up",

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:stint_app/model/user_model.dart';
 
-Future<CustomUser> getUserData(String id) async {
+Future<CustomUser> getUser(String id) async {
   final db = FirebaseFirestore.instance;
   final userDoc = await db.collection('users').doc(id).get();
   if (!userDoc.exists) {
@@ -9,5 +9,9 @@ Future<CustomUser> getUserData(String id) async {
   }
   final data = userDoc.data();
   return CustomUser(
-      id: id, firstName: data!['firstName'], lastName: data['lastName']);
+    id: id,
+    firstName: data!['firstName'],
+    lastName: data['lastName'],
+    email: data['email'],
+  );
 }

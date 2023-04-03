@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:provider/provider.dart';
 import 'package:stint_app/core/shared_preferences/preferences_util.dart';
 import 'package:stint_app/firebase_options.dart';
+import 'package:stint_app/provider/user_provider.dart';
 import 'package:stint_app/router.dart';
 
 Future<void> main() async {
@@ -16,7 +18,9 @@ Future<void> main() async {
   );
   FlutterNativeSplash.remove();
   // init code end
-  runApp(const MyApp());
+  runApp(MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => UserProvider())],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

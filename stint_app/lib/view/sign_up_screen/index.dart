@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:stint_app/core/constants/color_constants.dart';
 import 'package:stint_app/provider/user_provider.dart';
+import 'package:stint_app/view/common/custom_appbar.dart';
 import 'package:stint_app/view/sign_up_screen/components/sign_up_form.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -13,16 +14,7 @@ class SignUpScreen extends StatelessWidget {
     UserProvider userProvider = Provider.of(context);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: (() {
-              GoRouter.of(context).pop();
-            }),
-          )),
+      appBar: CustomAppBar(context),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),

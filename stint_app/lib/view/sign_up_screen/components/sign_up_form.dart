@@ -30,6 +30,8 @@ class _SignUpFormState extends State<SignUpForm> {
   String? password;
   final FocusNode _passwordFocusNode = FocusNode();
 
+  String? repeatPassword;
+  final FocusNode _repeatPasswordFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     UserProvider user = Provider.of<UserProvider>(context);
@@ -65,7 +67,7 @@ class _SignUpFormState extends State<SignUpForm> {
         const SizedBox(height: 30),
         passwordField(context),
         const SizedBox(height: 30),
-        passwordField(context),
+        passwordField(context, isRepeat: true),
         const SizedBox(height: 30),
         ElevatedButton(
           onPressed: () async {
@@ -102,37 +104,52 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  TextFormField passwordField(BuildContext context) {
+  TextFormField passwordField(BuildContext context, {bool isRepeat = false}) {
     return TextFormField(
       onSaved: (String? value) {
-        password = value;
+        if (isRepeat) {
+          repeatPassword = value;
+        } else {
+          password = value;
+        }
       },
       onTap: () {
         setState(() {
-          FocusScope.of(context).requestFocus(_passwordFocusNode);
+          if (isRepeat) {
+            FocusScope.of(context).requestFocus(_repeatPasswordFocusNode);
+          } else {
+            FocusScope.of(context).requestFocus(_passwordFocusNode);
+          }
         });
       },
-      focusNode: _passwordFocusNode,
+      focusNode: isRepeat ? _repeatPasswordFocusNode : _passwordFocusNode,
       obscureText: showPassword,
       keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(
           errorText: formError,
-          suffixIcon: IconButton(
-            icon: Icon(showPassword ? Icons.visibility_off : Icons.visibility,
-                color: _passwordFocusNode.hasFocus
-                    ? ColorConstants.primary
-                    : Colors.grey),
-            onPressed: () {
-              setState(() {
-                showPassword = !showPassword;
-              });
-            },
-          ),
-          labelText: "Password",
+          suffixIcon: isRepeat
+              ? null
+              : IconButton(
+                  icon: Icon(
+                      showPassword ? Icons.visibility_off : Icons.visibility,
+                      color: _passwordFocusNode.hasFocus
+                          ? ColorConstants.primary
+                          : Colors.grey),
+                  onPressed: () {
+                    setState(() {
+                      showPassword = !showPassword;
+                    });
+                  },
+                ),
+          labelText: isRepeat ? "Repeat Password" : "Password",
           labelStyle: TextStyle(
-              color: _passwordFocusNode.hasFocus
-                  ? ColorConstants.primary
-                  : Colors.grey),
+              color: isRepeat
+                  ? _repeatPasswordFocusNode.hasFocus
+                      ? ColorConstants.primary
+                      : Colors.grey
+                  : _passwordFocusNode.hasFocus
+                      ? ColorConstants.primary
+                      : Colors.grey),
           focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: ColorConstants.primary))),
     );

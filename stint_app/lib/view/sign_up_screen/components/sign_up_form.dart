@@ -35,6 +35,7 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     UserProvider user = Provider.of<UserProvider>(context);
+
     return Form(
       key: _formKey,
       child: Column(children: [
@@ -67,14 +68,19 @@ class _SignUpFormState extends State<SignUpForm> {
         const SizedBox(height: 30),
         passwordField(context),
         const SizedBox(height: 30),
-        passwordField(context, isRepeat: true),
+        passwordFieldRepeat(context),
         const SizedBox(height: 30),
         ElevatedButton(
           onPressed: () async {
             if (!_formKey.currentState!.validate()) return;
             _formKey.currentState!.save();
             try {
-              await user.login(email!, password!);
+              await user.signUp(
+                email: email!,
+                firstName: firstName!,
+                lastName: lastName!,
+                password: password!,
+              );
             } catch (e) {
               print(e);
               setState(() {
@@ -94,7 +100,7 @@ class _SignUpFormState extends State<SignUpForm> {
             padding: EdgeInsets.symmetric(vertical: 18),
             child: Center(
               child: Text(
-                "Login",
+                "Sign Up",
                 style: TextStyle(fontSize: 20),
               ),
             ),
@@ -104,52 +110,85 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
-  TextFormField passwordField(BuildContext context, {bool isRepeat = false}) {
+  TextFormField passwordField(BuildContext context) {
     return TextFormField(
-      onSaved: (String? value) {
-        if (isRepeat) {
-          repeatPassword = value;
-        } else {
-          password = value;
+      validator: (value) {
+        if (value == null) {
+          return "Password cannot be empty";
         }
+        if (value.length < 6) {
+          return "Password is to short";
+        }
+        password = value;
+        return null;
+      },
+      onSaved: (String? value) {
+        password = value;
       },
       onTap: () {
         setState(() {
-          if (isRepeat) {
-            FocusScope.of(context).requestFocus(_repeatPasswordFocusNode);
-          } else {
-            FocusScope.of(context).requestFocus(_passwordFocusNode);
-          }
+          FocusScope.of(context).requestFocus(_passwordFocusNode);
         });
       },
-      focusNode: isRepeat ? _repeatPasswordFocusNode : _passwordFocusNode,
+      focusNode: _passwordFocusNode,
       obscureText: showPassword,
       keyboardType: TextInputType.visiblePassword,
       decoration: InputDecoration(
           errorText: formError,
-          suffixIcon: isRepeat
-              ? null
-              : IconButton(
-                  icon: Icon(
-                      showPassword ? Icons.visibility_off : Icons.visibility,
-                      color: _passwordFocusNode.hasFocus
-                          ? ColorConstants.primary
-                          : Colors.grey),
-                  onPressed: () {
-                    setState(() {
-                      showPassword = !showPassword;
-                    });
-                  },
-                ),
-          labelText: isRepeat ? "Repeat Password" : "Password",
+          suffixIcon: IconButton(
+            icon: Icon(showPassword ? Icons.visibility_off : Icons.visibility,
+                color: _passwordFocusNode.hasFocus
+                    ? ColorConstants.primary
+                    : Colors.grey),
+            onPressed: () {
+              setState(() {
+                showPassword = !showPassword;
+              });
+            },
+          ),
+          labelText: "Password",
           labelStyle: TextStyle(
-              color: isRepeat
-                  ? _repeatPasswordFocusNode.hasFocus
-                      ? ColorConstants.primary
-                      : Colors.grey
-                  : _passwordFocusNode.hasFocus
-                      ? ColorConstants.primary
-                      : Colors.grey),
+              color: _passwordFocusNode.hasFocus
+                  ? ColorConstants.primary
+                  : Colors.grey),
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: ColorConstants.primary))),
+    );
+  }
+
+  TextFormField passwordFieldRepeat(BuildContext context) {
+    return TextFormField(
+      validator: (value) {
+        if (value == null) {
+          return "Password cannot be empty";
+        }
+        if (password != value) {
+          return "The Password is not equal";
+        }
+        if (value.length < 6) {
+          return "Password is to short";
+        }
+        return null;
+      },
+      onSaved: (String? value) {
+        repeatPassword = value;
+      },
+      onTap: () {
+        setState(() {
+          FocusScope.of(context).requestFocus(_repeatPasswordFocusNode);
+        });
+      },
+      focusNode: _repeatPasswordFocusNode,
+      obscureText: showPassword,
+      keyboardType: TextInputType.visiblePassword,
+      decoration: InputDecoration(
+          errorText: formError,
+          suffixIcon: null,
+          labelText: "Repeat Password",
+          labelStyle: TextStyle(
+              color: _repeatPasswordFocusNode.hasFocus
+                  ? ColorConstants.primary
+                  : Colors.grey),
           focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: ColorConstants.primary))),
     );

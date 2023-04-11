@@ -16,10 +16,11 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  var userProvider = UserProvider();
   FlutterNativeSplash.remove();
   // init code end
   runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => UserProvider())],
+      providers: [ChangeNotifierProvider(create: (context) => userProvider)],
       child: const MyApp()));
 }
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       title: "Stint Manager",
       // Hides debug banner when using flutter run -- debug
       debugShowCheckedModeBanner: false,
-      routerConfig: router,
+      routerConfig: router(),
     );
   }
 }

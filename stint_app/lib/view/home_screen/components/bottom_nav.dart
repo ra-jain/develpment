@@ -9,8 +9,8 @@ class BottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      unselectedItemColor: ColorConstants.secondary,
-      selectedItemColor: ColorConstants.primary,
+      unselectedItemColor: Colors.black,
+      selectedItemColor: ColorConstants.secondary,
       items: const [
         BottomNavigationBarItem(
             icon: Icon(Icons.folder_copy_outlined), label: "Projects"),

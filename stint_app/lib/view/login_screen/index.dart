@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:stint_app/core/constants/color_constants.dart';
-import 'package:stint_app/provider/user_provider.dart';
 import 'package:stint_app/view/login_screen/components/login_form.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -10,7 +8,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserProvider userProvider = Provider.of(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(

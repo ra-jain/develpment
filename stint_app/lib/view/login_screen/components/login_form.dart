@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:stint_app/core/constants/color_constants.dart';
 import 'package:stint_app/core/input/email_validator.dart';
@@ -53,7 +52,7 @@ class _LoginFormState extends State<LoginForm> {
 
             if (user.user == null) return;
             if (!mounted) return;
-            GoRouter.of(context).go("/");
+            // GoRouter.of(context).go("/");
           },
           style: ElevatedButton.styleFrom(
               foregroundColor: Colors.white,

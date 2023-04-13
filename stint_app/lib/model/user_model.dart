@@ -3,13 +3,22 @@ class CustomUser {
   String firstName;
   String lastName;
   String email;
+  List<String> projects;
+
   Map<String, dynamic> toJSON() {
-    return {"firstName": firstName, "lastName": lastName, "email": email};
+    return {
+      "id": id,
+      "firstName": firstName,
+      "lastName": lastName,
+      "email": email,
+      "projects": projects,
+    };
   }
 
   CustomUser(
       {required this.id,
       required this.firstName,
       required this.lastName,
-      required this.email});
+      required this.email,
+      required this.projects});
 }

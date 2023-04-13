@@ -9,9 +9,9 @@ Future<CustomUser> getUserService(String id) async {
   }
   final data = userDoc.data();
   return CustomUser(
-    id: id,
-    firstName: data!['firstName'],
-    lastName: data['lastName'],
-    email: data['email'],
-  );
+      id: id,
+      firstName: data!['firstName'],
+      lastName: data['lastName'],
+      email: data['email'],
+      projects: data['projects']);
 }

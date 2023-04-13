@@ -10,7 +10,7 @@ class UserWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserProvider userProvider = Provider.of(context);
-    if (userProvider.user != null) {
+    if (userProvider.user == null) {
       return const LoginScreen();
     }
     return const HomeScreen();

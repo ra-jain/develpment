@@ -22,6 +22,7 @@ class UserProvider extends ChangeNotifier {
         this.user = null;
         email = null;
         uid = null;
+        notifyListeners();
         return;
       }
       uid = user.uid;
@@ -62,7 +63,12 @@ class UserProvider extends ChangeNotifier {
       required String lastName,
       required String email}) async {
     user = CustomUser(
-        id: uid!, firstName: firstName, lastName: lastName, email: email);
+      id: uid!,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      projects: [],
+    );
     createUserService(user!);
     userExistsinDb = true;
   }
